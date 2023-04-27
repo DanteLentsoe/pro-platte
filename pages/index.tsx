@@ -21,11 +21,12 @@ export default function Home() {
       </Head>
       <main>
         <SideBar>
-          <div>
+          <div className="flex flex-row w-full">
+            <ColorPickerCustom />
+
             <EyeDropper />
           </div>
 
-          <ColorPickerCustom />
           <ColorPalette baseColor={'#bbf7d0'} />
         </SideBar>
       </main>

@@ -42,35 +42,43 @@ export const ColorPickerCustom: FC<Props> = () => {
       <UploadFile onChange={handleFileUpload}>Upload Image</UploadFile>
 
       {selectedImage && (
-        <div style={{ display: 'flex', marginTop: '1rem' }}>
-          <div style={{ position: 'relative' }}>
-            <img
-              src={selectedImage}
-              alt="Selected"
-              ref={imageRef}
-              height="300"
-              width="400"
-            />
-          </div>
+        <div className="border-4 border-gray-400 rounded-lg p-4 w-full  bg-slate-600">
           <div
+            className=" p-4 w-full bg-whiteTheme80 "
             style={{
               display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              marginLeft: '1rem',
+              borderRadius: 10,
             }}
           >
-            {colors.map((color, index) => (
-              <div
-                key={index}
-                style={{
-                  backgroundColor: `rgb(${color.join(', ')})`,
-                  height: '50px',
-                  width: '50px',
-                  marginBottom: '1rem',
-                }}
+            <div style={{ position: 'relative' }}>
+              <img
+                src={selectedImage}
+                alt="Selected"
+                ref={imageRef}
+                height="300"
+                width="400"
               />
-            ))}
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                marginLeft: '1rem',
+              }}
+            >
+              {colors.map((color, index) => (
+                <div
+                  key={index}
+                  style={{
+                    backgroundColor: `rgb(${color.join(', ')})`,
+                    height: '50px',
+                    width: '50px',
+                    marginBottom: '1rem',
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       )}

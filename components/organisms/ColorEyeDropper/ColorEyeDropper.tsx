@@ -25,7 +25,7 @@ export const EyeDropper: FC<EyeDropperProps> = ({ classNameName = '' }) => {
   return (
     <div>
       {isSupported() ? (
-        <div className="py-8">
+        <div className="py-8 w-full ml-4">
           <div className="container-fluid p-8 border border-l-8 border-blue-500 shadow-xl rounded-lg bg-gray-100">
             <button className={styles?.btn} onClick={pickColor}>
               <svg
