@@ -1,21 +1,22 @@
 import { FC, useState } from 'react'
 import useEyeDropper from 'use-eye-dropper'
 import styles from './ColorEyeDropper.module.css'
-interface EyeDropperProps {
-  classNameName?: string
-}
+import { useColor } from '@/context'
+import { getTextColor } from '@/utils'
+interface EyeDropperProps {}
 
-export const EyeDropper: FC<EyeDropperProps> = ({ classNameName = '' }) => {
-  const { open, close, isSupported } = useEyeDropper()
-  const [color, setColor] = useState<string>('#fff')
+export const EyeDropper: FC<EyeDropperProps> = () => {
+  const { open, isSupported } = useEyeDropper()
+
+  const { color, setColor } = useColor()
+  const textColor = getTextColor(color)
+
   const [error, setError] = useState<any>()
-  // useEyeDropper will reject/cleanup the open() promise on unmount,
-  // so setState never fires when the component is unmounted.
+
   const pickColor = () => {
     open()
       .then((color: any) => setColor(color.sRGBHex))
       .catch((e: any) => {
-        console.log(e)
         // Ensures component is still mounted
         // before calling setState
         if (!e.canceled) setError(e)
@@ -26,7 +27,7 @@ export const EyeDropper: FC<EyeDropperProps> = ({ classNameName = '' }) => {
     <div>
       {isSupported() ? (
         <div className="py-8 w-full ml-4">
-          <div className="container-fluid p-8 border border-l-8 border-blue-500 shadow-xl rounded-lg bg-gray-100">
+          <div className="container-fluid p-8 border-8 border-greenSpecial40 shadow-xl rounded-lg">
             <button className={styles?.btn} onClick={pickColor}>
               <svg
                 className="btn__icon"
@@ -44,9 +45,9 @@ export const EyeDropper: FC<EyeDropperProps> = ({ classNameName = '' }) => {
             </button>
             <span>Pick color</span>
 
-            <div className="h-auto w-auto p-6 mt-8 rounded-lg bg-green-200 border border-green-300">
+            <div className="h-auto w-auto p-6 mt-8 rounded-lg bg-greenSpecial80 border-greenSpecial40 border-">
               <div style={{ padding: '14px', background: color }}>
-                Selected color : {color}
+                <p style={{ color: textColor }}>Selected color : {color}</p>
               </div>
             </div>
           </div>
