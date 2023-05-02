@@ -1,12 +1,12 @@
-import { MenuItem } from '@/components/atoms'
-import { FC, ReactNode, useEffect, useRef, useState, MouseEvent } from 'react'
+import Link from 'next/link'
+import { FC, ReactNode, useEffect, useRef, useState } from 'react'
 
 interface ISideBarProps {
   children: ReactNode
 }
 
 export const SideBar: FC<ISideBarProps> = ({ children }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpen, _] = useState<boolean>(false)
   const elementRef = useRef<null>(null)
   const [openMenu, setOpenMenu] = useState<string | null>(
     '-translate-x-full sm:translate-x-0',
@@ -19,7 +19,7 @@ export const SideBar: FC<ISideBarProps> = ({ children }) => {
   }
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
+    const handleOutsideClick = (event: { target: any }) => {
       if (elementRef.current && !elementRef.current.contains(event.target)) {
         setOpenMenu('-translate-x-full sm:translate-x-0')
       }
@@ -91,8 +91,8 @@ export const SideBar: FC<ISideBarProps> = ({ children }) => {
         <div className="h-full px-3 py-4 overflow-y-auto bg-green-200 dark:bg-greenSpecial80 ">
           <ul className="space-y-2 font-medium">
             <li>
-              <a
-                href="#"
+              <Link
+                href="/"
                 className="flex items-center p-2 text-gray-900 hover:text-white  rounded-lg dark:text-blackTextMain hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
@@ -106,12 +106,12 @@ export const SideBar: FC<ISideBarProps> = ({ children }) => {
                   <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                 </svg>
                 <span className="ml-3">Home</span>
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a
-                href="#"
+              <Link
+                href="/contact"
                 className="flex items-center p-2 text-gray-900  hover:text-white rounded-lg dark:text-blackTextMain hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
@@ -128,11 +128,11 @@ export const SideBar: FC<ISideBarProps> = ({ children }) => {
                   ></path>
                 </svg>
                 <span className="flex-1 ml-3 whitespace-nowrap">Contact</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                href="/about"
                 className="flex items-center p-2 text-gray-900 hover:text-white  rounded-lg dark:text-blackTextMain hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
@@ -149,13 +149,13 @@ export const SideBar: FC<ISideBarProps> = ({ children }) => {
                   ></path>
                 </svg>
                 <span className="flex-1 ml-3 whitespace-nowrap">About</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
       </aside>
 
-      <div className="p-4 sm:ml-64 bg-whiteTheme80 h-screen">
+      <div className="p-4 sm:ml-64 bg-whiteTheme80 min-h-screen w-full">
         <div className="p-4  border-gray-200 rounded-lg">{children}</div>
       </div>
     </div>
