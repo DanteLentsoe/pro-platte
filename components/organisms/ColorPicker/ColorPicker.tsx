@@ -1,48 +1,22 @@
-import React, { useState, useRef, FC } from 'react'
-import ColorThief from 'colorthief'
-import { UploadFile } from '@/components/atoms'
-interface Props {}
+import React, { FC, MutableRefObject } from 'react'
 
-export const ColorPickerCustom: FC<Props> = () => {
-  const [colors, setColors] = useState<number[][]>([])
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
-  const imageRef = useRef<HTMLImageElement | null>(null)
+import NextImage from 'next/image'
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files![0]
-    const reader = new FileReader()
+interface IPalettePro {
+  colors: number[][]
+  selectedImage: string | null
+  imageRef: MutableRefObject<HTMLImageElement | null>
+}
 
-    reader.onload = () => {
-      setSelectedImage(reader.result as string)
-      const img = new Image()
-      img.onload = () => {
-        const colorThief = new ColorThief()
-        const colorPalette = colorThief.getPalette(img, 10)
-        setColors(colorPalette)
-      }
-      img.src = reader.result as string
-    }
-
-    reader.readAsDataURL(file)
-  }
-
-  const handleColorPicker = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
-    const x = event.nativeEvent.offsetX
-    const y = event.nativeEvent.offsetY
-    const ctx = imageRef.current!.getContext('2d')!
-    const pixelData = ctx.getImageData(x, y, 1, 1).data
-    const color = `rgb(${pixelData[0]}, ${pixelData[1]}, ${pixelData[2]})`
-    console.log(color) // You can replace this with any other functionality to show the color
-  }
-
+export const ColorPickerCustom: FC<IPalettePro> = ({
+  colors,
+  imageRef,
+  selectedImage,
+}) => {
   return (
     <div>
-      <UploadFile onChange={handleFileUpload}>Upload Image</UploadFile>
-
       {selectedImage && (
-        <div className="border-4 border-gray-400 rounded-lg p-4 w-full  bg-slate-600">
+        <div className="border-4 rounded-lg p-4 w-full border-greenSpecial20 bg-greenSpecial40 mt-8">
           <div
             className=" p-4 w-full bg-whiteTheme80 "
             style={{
@@ -51,12 +25,12 @@ export const ColorPickerCustom: FC<Props> = () => {
             }}
           >
             <div style={{ position: 'relative' }}>
-              <img
+              <NextImage
                 src={selectedImage}
                 alt="Selected"
                 ref={imageRef}
-                height="300"
-                width="400"
+                height="900"
+                width="600"
               />
             </div>
             <div
@@ -75,6 +49,7 @@ export const ColorPickerCustom: FC<Props> = () => {
                     height: '50px',
                     width: '50px',
                     marginBottom: '1rem',
+                    borderRadius: 8,
                   }}
                 />
               ))}
