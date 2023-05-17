@@ -1,62 +1,22 @@
-import React, { useState, useRef, FC, useEffect } from 'react'
-import ColorThief from 'colorthief'
-import { UploadFile } from '@/components/atoms'
-import { useLocalStorageState } from '@/hooks'
+import React, { FC, MutableRefObject } from 'react'
 
-interface Props {}
+import NextImage from 'next/image'
 
-export const ColorPickerCustom: FC<Props> = () => {
-  const [colors, setColors] = useLocalStorageState<number[][]>('colors', [])
+interface IPalettePro {
+  colors: number[][]
+  selectedImage: string | null
+  imageRef: MutableRefObject<HTMLImageElement | null>
+}
 
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
-
-  // Load selectedImage from local storage on component mount
-  useEffect(() => {
-    const storedSelectedImage = localStorage.getItem('selectedImage')
-    if (storedSelectedImage) {
-      setSelectedImage(storedSelectedImage)
-    }
-  }, [])
-
-  // Save selectedImage to local storage whenever it changes
-  useEffect(() => {
-    if (selectedImage) {
-      localStorage.setItem('selectedImage', selectedImage)
-    } else {
-      localStorage.removeItem('selectedImage')
-    }
-  }, [selectedImage])
-
-  const imageRef = useRef<HTMLImageElement | null>(null)
-
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files![0]
-    const reader = new FileReader()
-
-    reader.onload = () => {
-      setSelectedImage(reader.result as string)
-      const img = new Image()
-      img.onload = () => {
-        const colorThief = new ColorThief()
-        const colorPalette = colorThief.getPalette(img, 10)
-        setColors(colorPalette)
-      }
-      img.src = reader.result as string
-    }
-
-    reader.readAsDataURL(file)
-  }
-
+export const ColorPickerCustom: FC<IPalettePro> = ({
+  colors,
+  imageRef,
+  selectedImage,
+}) => {
   return (
     <div>
-      <div className="mt-4 mb-4">
-        <UploadFile onChange={handleFileUpload}>
-          {selectedImage ? 'Change Image' : 'Upload Image'}
-        </UploadFile>
-      </div>
-
       {selectedImage && (
-        <div className="border-4 rounded-lg p-4 w-full border-greenSpecial20 bg-greenSpecial40">
+        <div className="border-4 rounded-lg p-4 w-full border-greenSpecial20 bg-greenSpecial40 mt-8">
           <div
             className=" p-4 w-full bg-whiteTheme80 "
             style={{
@@ -65,7 +25,7 @@ export const ColorPickerCustom: FC<Props> = () => {
             }}
           >
             <div style={{ position: 'relative' }}>
-              <img
+              <NextImage
                 src={selectedImage}
                 alt="Selected"
                 ref={imageRef}
