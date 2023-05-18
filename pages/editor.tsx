@@ -1,10 +1,10 @@
-import Head from 'next/head'
+import Head from "next/head";
 
-import { Inter } from 'next/font/google'
+import { Inter } from "next/font/google";
 
-import HomePage from '@/components/templates/home'
+import HomePage from "@/components/templates/home";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -19,5 +19,5 @@ export default function Home() {
         <HomePage />
       </main>
     </>
-  )
+  );
 }

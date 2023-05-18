@@ -1,8 +1,8 @@
-import Link from 'next/link'
-import { PageWrapper } from '../organisms'
-import { Button } from '../atoms'
+import Link from "next/link";
+import { PageWrapper } from "../organisms";
+import { Button } from "../atoms";
 
-function Hero() {
+const Hero = () => {
   return (
     <PageWrapper>
       <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
@@ -23,15 +23,14 @@ function Hero() {
             </Button>
             <Link
               href="/about"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
+              className="text-sm font-semibold leading-6 text-gray-900">
               Learn more <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
       </div>
     </PageWrapper>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
