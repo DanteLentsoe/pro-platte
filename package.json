@@ -26,6 +26,8 @@
     "react-axe": "^3.5.4",
     "react-dom": "18.2.0",
     "react-error-boundary": "^4.0.4",
+    "react-select": "^5.7.3",
+    "styled-components": "^6.0.0-rc.1",
     "ts-node": "^10.9.1",
     "typescript": "5.0.3",
     "use-eye-dropper": "^1.4.3"
