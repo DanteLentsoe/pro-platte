@@ -93,3 +93,6 @@ Please read [CONTRIBUTING.md](https://gist.github.com/DanteLentsoe/Help-an-en-ey
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
+![Screenshot 2023-06-14 at 07 57 11](https://github.com/DanteLentsoe/pro-platte/assets/65385487/227c74d1-5b5e-4121-9d68-b47eaa2a7d43)
+
