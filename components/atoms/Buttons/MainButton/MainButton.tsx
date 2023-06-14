@@ -40,7 +40,8 @@ export const Button: FC<IButtonProps> = ({
             "relative overflow-hidden w-48 rounded-full bg-greenSpecial80 hover:bg-white text-teal-800 py-3 px-8 shadow-md hover:shadow-2xl transition duration-500 hover:cursor-pointer text-center",
             className
           )}
-          onClick={onClick}>
+          onClick={onClick}
+          type="submit">
           {children}
         </button>
       ) : (
