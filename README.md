@@ -96,3 +96,5 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ![Screenshot 2023-06-14 at 07 57 11](https://github.com/DanteLentsoe/pro-platte/assets/65385487/227c74d1-5b5e-4121-9d68-b47eaa2a7d43)
 
+<img width="1412" alt="Screenshot 2023-06-14 at 08 39 33" src="https://github.com/DanteLentsoe/pro-platte/assets/65385487/130fabfd-bd3f-46b3-afae-848fe723ac4e">
+
