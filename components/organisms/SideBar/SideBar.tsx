@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
+import { Navigation } from "@/components/atoms/Buttons/Navigation/Navigation";
 interface ISideBarProps {
   children: ReactNode;
 }
@@ -39,24 +39,6 @@ export const SideBar: FC<ISideBarProps> = ({ children }) => {
     };
   }, [isOpen]);
 
-  const svgArray = [
-    {
-      label: "Dashboard",
-      svg: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M12 2C6.485 2 2 6.485 2 12s4.485 10 10 10 10-4.485 10-10S17.515 2 12 2zm0 16c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6zm1-8.5V7h-2v2.5h2zm0 3.5V14h-2v-2.5h2z" />
-        </svg>
-      )
-    },
-    {
-      label: "Profile",
-      svg: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M12 12c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm0 2c-2.206 0-4.142.975-5.485 2.516-.127.144-.256.286-.394.422C6.203 16.51 4 18.491 4 20v1h16v-1c0-1.509-2.203-3.49-2.121-3.062-.138-.136-.267-.278-.394-.422C16.142 14.975 14.206 14 12 14zm0-10c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4z" />
-        </svg>
-      )
-    }
-  ];
   return (
     <div>
       <button
@@ -88,109 +70,7 @@ export const SideBar: FC<ISideBarProps> = ({ children }) => {
         className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${openMenu}`}
         aria-label="Sidebar">
         <div className="h-full px-3 py-4 overflow-y-auto bg-green-200 dark:bg-greenSpecial80 ">
-          <ul className="space-y-2 font-medium">
-            <li>
-              <Link
-                href="/"
-                className="flex items-center p-2 text-gray-900 hover:text-white  rounded-lg dark:text-blackTextMain hover:bg-gray-100 dark:hover:bg-gray-700">
-                <svg
-                  aria-hidden="true"
-                  className="w-6 h-6 text-blackTextMain transition duration-75 hover:text-white  dark:text-blackTextMain  group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                </svg>
-                <span className="ml-3">Home</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/editor"
-                className="flex items-center p-2 text-gray-900 hover:text-white  rounded-lg dark:text-blackTextMain hover:bg-gray-100 dark:hover:bg-gray-700">
-                <svg
-                  aria-hidden="true"
-                  className="w-6 h-6 text-blackTextMain transition duration-75 hover:text-white  dark:text-blackTextMain  group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                </svg>
-                <span className="ml-3">Color Picker</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/sandbox"
-                className="flex items-center p-2 text-gray-900 hover:text-white  rounded-lg dark:text-blackTextMain hover:bg-gray-100 dark:hover:bg-gray-700">
-                <svg
-                  aria-hidden="true"
-                  className="w-6 h-6 text-blackTextMain transition duration-75 hover:text-white  dark:text-blackTextMain  group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                </svg>
-                <span className="ml-3">Layout Sandbox</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/tips"
-                className="flex items-center p-2 text-gray-900 hover:text-white  rounded-lg dark:text-blackTextMain hover:bg-gray-100 dark:hover:bg-gray-700">
-                <svg
-                  aria-hidden="true"
-                  className="w-6 h-6 text-blackTextMain transition duration-75 hover:text-white  dark:text-blackTextMain  group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                </svg>
-                <span className="ml-3">Tips and Guide</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className="flex items-center p-2 text-gray-900  hover:text-white rounded-lg dark:text-blackTextMain hover:bg-gray-100 dark:hover:bg-gray-700">
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-6 h-6 text-blackTextMain transition duration-75 dark:text-blackTextMain group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    fillRule="evenodd"
-                    d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                    clipRule="evenodd"></path>
-                </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Contact</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className="flex items-center p-2 text-gray-900 hover:text-white  rounded-lg dark:text-blackTextMain hover:bg-gray-100 dark:hover:bg-gray-700">
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-6 h-6 text-blackTextMain transition duration-75 dark:text-blackTextMain group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    fillRule="evenodd"
-                    d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
-                    clipRule="evenodd"></path>
-                </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">About</span>
-              </Link>
-            </li>
-          </ul>
+          <Navigation />
         </div>
       </aside>
 
